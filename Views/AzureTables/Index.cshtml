@@ -1,0 +1,87 @@
+﻿@model IEnumerable<MvcAzureTables.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<p>
+    <a asp-controller="AzureTables" asp-action="ClientesEmpresa">Buscar clientes empresa</a>
+</p>
+
+@if (Model != null)
+{
+    <table class="table table-info text-center">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdCliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Empresa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Edad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Salario)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCliente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Empresa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Edad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Salario)
+                    </td>
+                    <td>
+                        <a asp-controller="AzureTables"
+                           asp-action="Details"
+                           asp-route-rowkey="@item.RowKey"
+                           asp-route-partitionkey="@item.PartitionKey"
+                           class="btn btn-success">
+                            Details
+                        </a>
+                        <a asp-controller="AzureTables"
+                           asp-action="Edit"
+                           asp-route-rowkey="@item.RowKey"
+                           asp-route-partitionkey="@item.PartitionKey"
+                           class="btn btn-info">
+                            Edit
+                        </a>
+                        <a asp-controller="AzureTables"
+                           asp-action="Delete"
+                           asp-route-rowkey="@item.RowKey"
+                           asp-route-partitionkey="@item.PartitionKey"
+                           class="btn btn-danger">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

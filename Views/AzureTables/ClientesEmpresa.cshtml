@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MvcAzureTables.Models.Cliente>
+
+@{
+    ViewData["Title"] = "ClientesEmpresa";
+}
+
+<h1>Clientes Empresa</h1>
+
+<form method="post">
+    <label>Empresa: </label>
+    <input type="text" name="empresa" class="form-control" />
+    <button type="submit" class="btn btn-info">
+        Buscar clientes
+    </button>
+</form>
+
+@if (Model != null)
+{
+    <table class="table table-dark text-center">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdCliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Empresa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Edad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Salario)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdCliente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Empresa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Edad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Salario)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
